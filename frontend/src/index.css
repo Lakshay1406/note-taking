@@ -2,3 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+.scrollbar-dark::-webkit-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+  }
+  
+  .scrollbar-dark::-webkit-scrollbar-thumb {
+    background-color: #a3aab4; /* Dark thumb color */
+    border-radius: 9999px; /* Optional: round the scrollbar thumb */
+  }
+  
+  .scrollbar-dark::-webkit-scrollbar-track {
+    background-color: #212020; /* Dark track color */
+    border-radius: 9999px; /* Optional: round the track */
+  }

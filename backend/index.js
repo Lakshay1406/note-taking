@@ -71,9 +71,9 @@ router.post("/login",async(req,res)=>{
                     status : "success",
                     code : 200,
                     message :"successful login",
-                    data : {email:givenEmail},
+                    data : {email:givenEmail,userId:user._id},
                 })
-            } else {
+            } else {    
                 console.log('invalid password');
                 return res.status(200).json({
                         status : "error",
@@ -111,6 +111,7 @@ router.post("/register",async(req,res)=>{
             const user=new UserModel({
                 email:givenEmail,
                 password:hashPassword,
+                notes:[],
             })
             await user.save();
             console.log("new user created");
@@ -118,7 +119,11 @@ router.post("/register",async(req,res)=>{
                 status : "success",
                 code : 200,
                 message :"successful login",
-                data : {email:givenEmail},
+                data : {
+                    email:givenEmail,
+                    userId:user._id,
+
+                },
             })
         }
     } catch (error) {
@@ -128,9 +133,88 @@ router.post("/register",async(req,res)=>{
 
 });
     
+router.post("/note/add",async(req,res)=>{
+    try{
+        const { note, email } = req.body;
+        const givenEmail=email;
+        if(!note || !givenEmail){
+            return res.status(400).json({ error: 'Note and userId are required.' });
+        }
+        const user=await UserModel.findOne({email:givenEmail});
+        if(!user){
+            return res.status(404).json({ error: 'User not found.' });
+        }
+
+        user.notes.push(note);
+        await user.save();
+        res.status(200).json({ message: 'Note added successfully!'});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
+})
+
+router.post("/note/delete",async(req,res)=>{
+    try{
+        const { noteId, email } = req.body;
+        const givenEmail=email;
+        if(!noteId || !givenEmail){
+            return res.status(400).json({ error: 'NoteId and userId are required.' });
+        }
+        // Use $pull to remove the note directly
+        const user = await UserModel.findOneAndUpdate(
+            { email:givenEmail },
+            { $pull: { notes: { _id: noteId } } }, // Pull note by ID
+            { new: true } // Return the updated document
+        );
+        if (!user) {
+            return res.status(404).json({ error: 'User not found.' });
+        }
+        res.status(200).json({ message: 'Note deleted successfully!' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
+})
 
 
+router.post("/note/update",async(req,res)=>{
+    try{
+        const { email, noteId, note:updatedNote } = req.body;
+        if(!noteId || !email || !updatedNote){
+            return res.status(400).json({ error: 'NoteId and userId and textNote are required.' });
+        }
+        const updatedUser = await UserModel.findOneAndUpdate(
+            { email:email, "notes._id": noteId }, // Match user and specific note
+            { $set: { 
+                "notes.$.title": updatedNote.title,
+                "notes.$.content": updatedNote.content,
+                "notes.$.updatedAt": new Date(),
+            }}
+        )
+        if (!updatedUser) {
+            return res.status(404).json({ error: 'User not found or note not found.' });
+        }
+        return res.status(200).json({ message: 'Note updated successfully!' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
 
+})
+router.get("/note",async(req,res)=>{
+    try{
+        const userId=req.query.id;
+        const currUser=await UserModel.findOne({_id:userId});
+        if (!currUser) {
+            return res.status(404).json({ error: "User not found." });
+          }
+        res.status(200).json({notes:currUser.notes});
+    }catch(error){
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
+})
 
 
 const PORT = process.env.PORT || 5000;
