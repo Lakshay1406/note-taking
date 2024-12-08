@@ -1,6 +1,7 @@
 import { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import NavBar from "./NavBar";
 import Inputfield from "./Inputfield";
 const Login = () => {
   const navigate = useNavigate();
@@ -33,9 +34,12 @@ const Login = () => {
   alert(result.message);
   }
   return (
-    <div className="flex items-center justify-center w-full h-screen bg-white">
-        
-            <form onSubmit={formSubmit} className="flex flex-col items-center justify-center p-2 border border-transparent rounded-lg shadow-2xl bg-gray-600 size-80" >
+    <div className="bg-[url('/bookbg2.jpg')] bg-cover bg-center h-screen flex flex-col">
+     
+      <NavBar />
+    <div className="flex items-center justify-center h-screen "  >
+    
+            <form onSubmit={formSubmit} className="flex flex-col items-center justify-center p-2 bg-gradient-to-b from-zinc-900 to-zinc-800 rounded-lg shadow-2xl bg-zinc-700 size-72 sm:size-80 " >
               <h1 className="text-2xl font-semibold text-white pb-7 ">Login</h1>
             
             
@@ -55,12 +59,14 @@ const Login = () => {
             name="password"
             />
 
-            <input className="w-56 px-3 py-1 my-4 bg-white border border-transparent rounded-md cursor-pointer hover:" type="submit" value="Login"></input>
+            <input className="w-48 sm:w-56 px-3 py-1 my-4 bg-yellow-500 border border-transparent rounded-md cursor-pointer hover:" type="submit" value="Login"></input>
             
-            <Link className="text-white transition-all hover:scale-110" to="/register">Don't have an account? Register</Link>
+            <Link className="text-white transition-all hover:scale-110 hover:text-yellow-500" to="/register">Don't have an account? Register</Link>
             </form>
         
     </div>
+    </div>
+    
   )
 }
 

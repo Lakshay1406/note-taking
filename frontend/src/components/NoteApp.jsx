@@ -3,6 +3,7 @@ import Note from "./Note";
 import CreateNote from "./CreateNote";
 import { useNavigate } from "react-router-dom";
 import MyModal from "./MyModel";
+import NavBar from "./NavBar";
 const NoteApp = () => {
   const navigate = useNavigate();
   const [notes,updateNotes]=useState([]);
@@ -142,14 +143,11 @@ const NoteApp = () => {
     console.log(currNote)
   }
 
+  
+
   return (
-    <div className="bg-zinc-800 overflow-auto h-screen pb-10 scrollbar-dark">
-      <div className="bg-yellow-500 text-white p-5 flex font-mono text-2xl shadow-xl" >
-        <h1>Take Notes</h1>
-        <button onClick={logout} className="bg-zinc-800 text-sm text-yellow-500 ml-auto rounded-md p-1 px-2 hover:text-white">Logout</button>
-      </div>  
-
-
+    <div className="bg-[url('/bookbg2.jpg')] bg-cover bg-center bg-opacity-15  bg-zinc-800 overflow-auto h-screen pb-10 scrollbar-dark">
+      <NavBar logout={logout} /> 
       <CreateNote onAdd={newNote} />
       <MyModal onClose={handleOnClose} visible={showModel} currNote={currNote} updateNote={updateNote}/>
       
