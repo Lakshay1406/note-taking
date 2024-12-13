@@ -4,11 +4,12 @@ import './index.css'
 import App from './App.jsx'
 import Register from './components/Register.jsx'
 import NoteApp from './components/NoteApp.jsx'
+import Login from './components/Login.jsx'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Login from './components/login.jsx'
+
 
 const router = createBrowserRouter([
   {
