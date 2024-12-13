@@ -26,9 +26,11 @@ const CreateNote = (props) => {
         <button className="absolute top-full left-60 sm:left-80 bg-yellow-400 rounded-full p-2 shadow-md -mt-5"
         onClick={()=>{
             const newNote={title:title,content:content};
+            if(title!=="" || content!==""){ 
             props.onAdd(newNote);
             updateTitle("");
             updateContent("");
+            }
         }}>Add</button>
       
       </form>

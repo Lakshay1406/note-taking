@@ -1,8 +1,8 @@
-import React from "react";
+
 import { MdDeleteForever } from "react-icons/md";
 import { MdModeEdit } from "react-icons/md";
 
-function Note(props) {
+function Note(props) { 
   return (
     <div className="shadow-md sm:h-36 bg-zinc-700 rounded-md p-3 ">
       <div className="flex justify-start items-center pb-2">
@@ -10,12 +10,15 @@ function Note(props) {
       <div className="w-3/4">
       <h1 className="font-semibold text-yellow-400 truncate " >{props.title}</h1>
       </div>
-      <MdModeEdit className="text-yellow-400 hover:scale-150 ml-auto cursor-pointer "
-      onClick={()=>{props.openModel(props.id)}}
-      />
+      <div  className="text-yellow-400  ml-auto cursor-pointer  hover:text-yellow-500 "
+      onClick={(e)=>{
+        e.preventDefault();
+        props.openModel(props.id);}}>
+      <MdModeEdit />
+      </div>
       <MdDeleteForever className="text-red-400 ml-1 hover:scale-150 hover:text-red-400 cursor-pointer" 
       onClick={() => {
-        props.deleteNote(props.id);
+        { if (window.confirm('Are you sure you wish to delete this item?')) props.deleteNote(props.id) } 
       }}
       />
       </div>

@@ -1,10 +1,10 @@
-import { useState,useEffect } from "react"
+import { useState,useEffect} from "react"
 
 export default function MyModal(props) {
   if(props.visible===false) return null;
+ 
   function handleClose(e){
     if(e.target.id==="modelContainer"){
-      
       props.onClose();
     }
   }
@@ -16,6 +16,7 @@ export default function MyModal(props) {
   useEffect(()=>{
     updateTitle(props.currNote.title);
     updateContent(props.currNote.content);
+   
   },[props.currNote])
 
   function onChange(event){
@@ -39,7 +40,7 @@ export default function MyModal(props) {
         className="bg-zinc-600 flex flex-col gap-2 items-start mt-20 shadow-md w-72 sm:w-96 p-5 rounded-lg"
       >
         
-        <textarea className="outline-none w-full bg-inherit text-yellow-400 resize-none scrollbar-dark   font-sans font-semibold" 
+        <textarea  className="outline-none w-full bg-inherit text-yellow-400 resize-none scrollbar-dark   font-sans font-semibold" 
         type="text" rows={title.length<26?"1":"2"} placeholder="Title" value={title} onChange={onChange} name="title"></textarea>
 
         

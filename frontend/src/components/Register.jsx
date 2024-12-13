@@ -21,7 +21,7 @@ const Register = () => {
   const formSubmit=async(event)=>{
     event.preventDefault();
     if(formData.password!=formData.confirmPassword){
-      return alert("not same passwords");
+      return alert("There is a variation between the two passwords.");
     }
     const response=await fetch(`${import.meta.env.VITE_APP_BACKEND_URI}/register`,{
       method:'POST',

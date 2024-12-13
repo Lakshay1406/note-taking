@@ -54,11 +54,11 @@ router.post("/login",async(req,res)=>{
     try {
         const user = await UserModel.findOne({email: givenEmail})
         if (!user) {
-            console.log('invalid email');
+            console.log('Invalid email.');
             return res.status(200).json({
                 status : "error",
                 code : 404,
-                message :"Email does not exsist.",
+                message :"Email does not exist.",
                 data : null,
             });
         }
@@ -74,11 +74,11 @@ router.post("/login",async(req,res)=>{
                     data : {email:givenEmail,userId:user._id},
                 })
             } else {    
-                console.log('invalid password');
+                console.log('Invalid password.');
                 return res.status(200).json({
                         status : "error",
                         code : 200,
-                        message :"invalid password",
+                        message :"Invalid password.",
                         data: null,
                 });
             }
@@ -97,11 +97,11 @@ router.post("/register",async(req,res)=>{
     try {
         const user = await UserModel.findOne({email: givenEmail})
         if (user) {
-            console.log('email already exsists');
+            console.log('Email already exists.');
             return res.status(200).json({
                 status : "error",
                 code : 404,
-                message :"Email already exsists.",
+                message :"Email already exists.",
                 data : null,
             });
         }

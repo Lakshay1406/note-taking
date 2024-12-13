@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.body{
+  background-color: #212020;
+}
 .scrollbar-dark::-webkit-scrollbar {
     width: 8px; /* Set the width of the scrollbar */
   }
