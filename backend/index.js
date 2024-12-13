@@ -4,7 +4,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 dotenv.config();
 import UserModel from './User.js';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
+
 
 
 const app=express();
