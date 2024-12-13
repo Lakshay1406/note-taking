@@ -6,7 +6,7 @@ dotenv.config();
 import UserModel from './User.js';
 import bcrypt from 'bcryptjs';
 
-
+const HOST = '0.0.0.0';
 
 const app=express();
 // Middleware
@@ -221,6 +221,6 @@ router.get("/note",async(req,res)=>{
 const PORT = process.env.PORT || 5000;
 
 app.use(router);
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });
