@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-[url('/bookbg2.jpg')] bg-cover bg-center h-screen">
+      <div className="bg-[url('/bookbg2.jpg')] bg-cover bg-center overflow-auto h-screen">
         <div className="bg-gradient-to-r from-black/80 from-10% via-transparent to-transparent flex flex-col h-screen">
           <NavBar />
           <div className="p-5 sm:p-16 md:p-20 lg:p-28 flex items-start justify-center flex-col h-full">
