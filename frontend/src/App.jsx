@@ -1,4 +1,4 @@
-import Login from "./components/login"
+
 import { useState,useEffect } from "react"
 import { Link } from "react-router-dom"
 import NavBar from "./components/NavBar"
