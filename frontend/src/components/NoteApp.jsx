@@ -56,7 +56,7 @@ const NoteApp = () => {
           body:JSON.stringify({"note":note,"email":user.email})
         });
         const  result=await response.json();
-        console.log(result);
+        // console.log(result);
       }catch(error){
         console.log(error);
       }

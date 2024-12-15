@@ -15,9 +15,10 @@ const Inputfield = (props) => {
     <div>
       <div className="relative">
         <input
-          className="px-2 py-1 m-1 border border-transparent rounded-md bg-zinc-900 text-white  
-            focus:outline-none focus:ring-2 focus:ring-yellow-500  w-60 sm:w-72
-             focus:invalid:border-transparent"
+          className={`px-2 py-1 m-1 border border-transparent rounded-md bg-zinc-900 text-white  
+            focus:outline-none focus:ring-2 focus:ring-yellow-500  w-60 sm:w-72 
+             invalid:border-red-500  focus:invalid:ring-red-500 ${props.highlight?'border-red-500':''}
+             focus:invalid:border-transparent invalid:placeholder-shown:border-transparent invalid:placeholder-shown:focus:ring-yellow-500`}
           type={isPasswordVisible ? 'text' : props.type}  
           placeholder={props.placeholder}
           required
@@ -26,6 +27,7 @@ const Inputfield = (props) => {
           name={props.name}
           autoComplete="on"
         />
+        
         
         {props.type === 'password' && (  // Only show the toggle button for password fields
           <button

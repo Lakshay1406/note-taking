@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 .body{
-  background-color: #212020;
+  background: #2a2929;
 }
 .scrollbar-dark::-webkit-scrollbar {
     width: 8px; /* Set the width of the scrollbar */
   }
   
   .scrollbar-dark::-webkit-scrollbar-thumb {
-    background-color: #a3aab4; /* Dark thumb color */
+    background-color: #2c2c2c; /* Dark thumb color */
     border-radius: 9999px; /* Optional: round the scrollbar thumb */
   }
   
   .scrollbar-dark::-webkit-scrollbar-track {
-    background-color: #212020; /* Dark track color */
+    background-color: #1a1a1a; /* Dark track color */
     border-radius: 9999px; /* Optional: round the track */
   }
