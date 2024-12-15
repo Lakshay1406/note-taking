@@ -3,8 +3,14 @@
 @tailwind utilities;
 
 .body{
-  background: #2a2929;
+  background-color: #121212;
 }
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+  }
+}
+
 .scrollbar-dark::-webkit-scrollbar {
     width: 8px; /* Set the width of the scrollbar */
   }

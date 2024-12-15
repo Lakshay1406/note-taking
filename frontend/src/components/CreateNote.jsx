@@ -3,9 +3,10 @@ import { useState } from "react"
 const CreateNote = (props) => {
     const[title,updateTitle]=useState("");
     const[content,updateContent]=useState("");
-
+    const [highlight,setHighlight]=useState(false);
     function onChange(event){
         const{name,value}=event.target;
+
         if(name==="title"){
             updateTitle(value);
         }
@@ -19,17 +20,27 @@ const CreateNote = (props) => {
       <form onSubmit={(e) => e.preventDefault()}
         className="relative bg-zinc-700 flex flex-col gap-2 items-start mt-20 shadow-md  w-72 sm:w-96 p-5 rounded-lg"
       >
-        <input className="outline-none bg-inherit w-full text-white font-sans font-semibold" 
-        type="text" placeholder="Title" value={title} onChange={onChange} name="title"></input>
-        <textarea className="outline-none w-full bg-inherit text-white" 
-        rows="3" type="text" placeholder="Take a note..." value={content} onChange={onChange} name="content"></textarea>
+        <input className={`outline-none bg-inherit w-full text-white font-sans 
+        ${highlight?'placeholder:text-yellow-500':''} font-semibold`}
+        type="text" placeholder="Title" value={title} onChange={onChange} name="title">
+        </input>
+
+        <textarea className={`outline-none w-full bg-inherit 
+        ${highlight?'placeholder:text-yellow-500':''} text-white`}
+        rows="3" type="text" placeholder="Take a note..." value={content} onChange={onChange} name="content">
+        </textarea>
+
         <button className="absolute top-full left-60 sm:left-80 bg-yellow-400 rounded-full p-2 shadow-md -mt-5"
         onClick={()=>{
             const newNote={title:title,content:content};
-            if(title!=="" || content!==""){ 
+            if(title!=="" && content!==""){ 
             props.onAdd(newNote);
             updateTitle("");
             updateContent("");
+            }
+            else{
+              setHighlight(true);
+              setTimeout(()=>{setHighlight(false)},400);
             }
         }}>Add</button>
       
