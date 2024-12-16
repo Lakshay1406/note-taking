@@ -35,7 +35,7 @@ const Login = () => {
     });
   const result = await response.json();
   
-  console.log("Server Response:", result);
+  //console.log("Server Response:", result);
   
   if(result.status === "success"){
     localStorage.setItem("user", JSON.stringify(result.data));

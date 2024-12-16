@@ -21,7 +21,7 @@ const NoteApp = () => {
   },[navigate])
 
   useEffect(()=>{
-    console.log(user);
+    //console.log(user);
     if(user===null) return;
     const fetchNotes = async () => {
     try {
@@ -31,7 +31,7 @@ const NoteApp = () => {
         headers:{'Content-type':"application/json"},
       });
       const result = await response.json();
-      console.log(result);
+      //console.log(result);
       updateNotes(result.notes);
       
     
@@ -56,7 +56,7 @@ const NoteApp = () => {
           body:JSON.stringify({"note":note,"email":user.email})
         });
         const  result=await response.json();
-        // console.log(result);
+         console.log(result);
       }catch(error){
         console.log(error);
       }
@@ -83,7 +83,7 @@ const NoteApp = () => {
         body:JSON.stringify({"noteId":id,"email":user.email})
       });
       const  result=await response.json();
-      console.log(result);
+      //console.log(result);
     }catch(error){
       console.log(error);
     }
@@ -116,7 +116,7 @@ const NoteApp = () => {
           })
       });
       const  result=await response.json();
-      console.log(result);
+      //console.log(result);
     }catch(error){
       console.log(error);
     }
@@ -137,10 +137,10 @@ const NoteApp = () => {
   function openModel(id){
     
     const note=notes.find(note=>note._id===id);
-    console.log("note",note);
+    //console.log("note",note);
     setCurrNote(note);
     setShowModel(true);
-    console.log(currNote)
+    //console.log(currNote)
   }
 
   

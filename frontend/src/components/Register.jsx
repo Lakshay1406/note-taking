@@ -52,14 +52,14 @@ const Register = () => {
       )
     });
     const result=await response.json();
-    console.log("Server Response:", result);
+    //console.log("Server Response:", result);
     if(result.status === "success"){
       localStorage.setItem("user", JSON.stringify(result.data));
       return navigate("/notes")
     }
     setLoading(false);
     //alert(result.message);
-    console.log(result.message);
+    //console.log(result.message);
     setErrorEmail(true);
 
   }
